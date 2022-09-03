@@ -1,3 +1,4 @@
+//Fetch function
 var getUserRepos = function(user) {
     //user api string
     var userApi = "https://api.github.com/users/" + user + "/repos";
@@ -10,4 +11,31 @@ var getUserRepos = function(user) {
 };
 
 
-getUserRepos("microsoft");
+
+//user-form handler
+var userFormEl = document.querySelector("#user-form");
+var nameInputEl = document.querySelector("#username");
+
+var formSubmitHandler = function(event) {
+    event.preventDefault();
+    
+    var userName = nameInputEl.value.trim();
+    if (userName) {
+        getUserRepos(userName);
+        nameInputEl.value = "";
+    } else {
+        alert("Please enter valid github username.");
+    }
+
+
+};
+
+
+
+
+
+
+
+
+//Call functions and event listners
+userFormEl.addEventListener("submit",formSubmitHandler);
